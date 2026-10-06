@@ -1,0 +1,131 @@
+{
+  "selected_model": "Logistic Regression",
+  "accuracy": 0.8166666666666667,
+  "precision": 0.8181818181818182,
+  "recall": 0.627906976744186,
+  "f1_score": 0.7105263157894737,
+  "roc_auc": 0.8770764119601329,
+  "confusion_matrix": [
+    [
+      71,
+      6
+    ],
+    [
+      16,
+      27
+    ]
+  ],
+  "cv_roc_auc": 0.8541760839713992,
+  "threshold": 0.5,
+  "selection_method": "Highest mean ROC-AUC on 5 stratified training folds; F1 breaks ties",
+  "models": [
+    {
+      "name": "Logistic Regression",
+      "cv_roc_auc": 0.8541760839713992,
+      "cv_roc_auc_std": 0.04500326104110407,
+      "cv_f1": 0.6997333969818016,
+      "accuracy": 0.8166666666666667,
+      "precision": 0.8181818181818182,
+      "recall": 0.627906976744186,
+      "f1_score": 0.7105263157894737,
+      "roc_auc": 0.8770764119601329,
+      "confusion_matrix": [
+        [
+          71,
+          6
+        ],
+        [
+          16,
+          27
+        ]
+      ]
+    },
+    {
+      "name": "Random Forest",
+      "cv_roc_auc": 0.8335637628927828,
+      "cv_roc_auc_std": 0.04070136880031218,
+      "cv_f1": 0.6327771598071931,
+      "accuracy": 0.825,
+      "precision": 0.84375,
+      "recall": 0.627906976744186,
+      "f1_score": 0.72,
+      "roc_auc": 0.8725460585925703,
+      "confusion_matrix": [
+        [
+          72,
+          5
+        ],
+        [
+          16,
+          27
+        ]
+      ]
+    },
+    {
+      "name": "K-Nearest Neighbors",
+      "cv_roc_auc": 0.823301018979776,
+      "cv_roc_auc_std": 0.025341057108840524,
+      "cv_f1": 0.6375899843505477,
+      "accuracy": 0.7583333333333333,
+      "precision": 0.7333333333333333,
+      "recall": 0.5116279069767442,
+      "f1_score": 0.6027397260273972,
+      "roc_auc": 0.8320749018423437,
+      "confusion_matrix": [
+        [
+          69,
+          8
+        ],
+        [
+          21,
+          22
+        ]
+      ]
+    },
+    {
+      "name": "Decision Tree",
+      "cv_roc_auc": 0.7654137244532926,
+      "cv_roc_auc_std": 0.05661031180041997,
+      "cv_f1": 0.6016793934035314,
+      "accuracy": 0.8166666666666667,
+      "precision": 0.7560975609756098,
+      "recall": 0.7209302325581395,
+      "f1_score": 0.7380952380952381,
+      "roc_auc": 0.8500453035336756,
+      "confusion_matrix": [
+        [
+          67,
+          10
+        ],
+        [
+          12,
+          31
+        ]
+      ]
+    }
+  ],
+  "dataset_type": "synthetic/demo",
+  "random_state": 42,
+  "rows": 600,
+  "train_rows": 480,
+  "test_rows": 120,
+  "class_counts": {
+    "0": 385,
+    "1": 215
+  },
+  "dataset_sha256": "4fef5377bac49e4b329c5875d6866988093cca968f27f7bd7dfc433058086183",
+  "model_version": "b92060d2a62d87db",
+  "trained_at": "2026-10-06T03:46:26.044223+00:00",
+  "python_version": "3.12.14",
+  "sklearn_version": "1.7.2",
+  "feature_columns": [
+    "Pregnancies",
+    "Glucose",
+    "BloodPressure",
+    "SkinThickness",
+    "Insulin",
+    "BMI",
+    "DiabetesPedigreeFunction",
+    "Age"
+  ]
+}

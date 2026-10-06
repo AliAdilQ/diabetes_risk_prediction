@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore an educational diabetes risk machine learning demo, built by AliAdilQ.">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <title>{% block title %}Diabetes Risk Prediction{% endblock %} · DiabetesAI</title>
+  <link rel="icon" href="{{ url_for('static', filename='images/favicon.svg') }}" type="image/svg+xml">
+  <link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap-icons.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  {% block head %}{% endblock %}
+</head>
+<body class="{% block body_class %}{% endblock %}">
+<a class="skip-link" href="#main-content">Skip to content</a>
+{% block navigation %}
+<nav class="navbar navbar-expand-lg public-nav" aria-label="Main navigation">
+  <div class="container">
+    <a class="navbar-brand brand" href="{{ url_for('main.home') }}"><span class="brand-symbol"><i class="bi bi-heart-pulse"></i></span>Diabetes<span>AI</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation"><i class="bi bi-list"></i></button>
+    <div class="collapse navbar-collapse" id="main-nav">
+      <div class="navbar-nav mx-auto gap-lg-3">
+        {% for endpoint, label in [('main.home', 'Home'), ('main.predict', 'Prediction'), ('main.about', 'About'), ('main.model_info', 'Model Info')] %}
+        <a class="nav-link {{ 'active' if request.endpoint == endpoint }}" href="{{ url_for(endpoint) }}" {% if request.endpoint == endpoint %}aria-current="page"{% endif %}>{{ label }}</a>
+        {% endfor %}
+      </div>
+      <a class="btn btn-outline-soft btn-sm" href="{{ url_for('admin.dashboard' if current_user.is_authenticated else 'admin.login') }}"><i class="bi bi-shield-lock me-2"></i>{{ 'Admin workspace' if current_user.is_authenticated else 'Admin Login' }}</a>
+    </div>
+  </div>
+</nav>
+{% endblock %}
+{% block layout %}
+<main id="main-content">
+  <div class="container flash-container" role="status">
+    {% for category, message in get_flashed_messages(with_categories=true) %}<div class="alert alert-{{ category }}">{{ message }}</div>{% endfor %}
+  </div>
+  {% block content %}{% endblock %}
+</main>
+{% endblock %}
+{% block footer %}
+<footer class="public-footer">
+  <div class="container">
+    <div class="row align-items-center gy-3 pb-4">
+      <div class="col-md-6"><a class="brand" href="{{ url_for('main.home') }}"><span class="brand-symbol"><i class="bi bi-heart-pulse"></i></span>Diabetes<span>AI</span></a><p class="small text-muted mt-2 mb-0">Thoughtful machine learning. Built for learning.</p></div>
+      <div class="col-md-6 text-md-end"><a class="footer-link" href="https://github.com/AliAdilQ/diabetes_risk_prediction" target="_blank" rel="noopener"><i class="bi bi-github me-2"></i>View on GitHub <i class="bi bi-arrow-up-right ms-2"></i></a></div>
+    </div>
+    <div class="footer-bottom"><p><i class="bi bi-info-circle me-2"></i>{{ disclaimer }}</p><span>© 2026 AliAdilQ · MIT License</span></div>
+  </div>
+</footer>
+{% endblock %}
+<script src="{{ url_for('static', filename='vendor/bootstrap.bundle.min.js') }}" defer></script>
+<script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

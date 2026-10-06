@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block body_class %}admin-body{% endblock %}
+{% block navigation %}
+<aside class="admin-sidebar" id="admin-sidebar" aria-label="Admin navigation">
+  <a class="brand" href="{{ url_for('main.home') }}"><span class="brand-symbol"><i class="bi bi-heart-pulse"></i></span>Diabetes<span>AI</span></a>
+  <span class="workspace-label">ADMIN WORKSPACE</span>
+  <nav class="sidebar-links">
+    {% for endpoint, icon, label in [('admin.dashboard', 'grid-1x2', 'Dashboard'), ('admin.predictions', 'clipboard2-pulse', 'Predictions'), ('admin.model_performance', 'bar-chart-line', 'Model Performance')] %}<a href="{{ url_for(endpoint) }}" class="{{ 'active' if request.endpoint == endpoint or (endpoint == 'admin.predictions' and request.endpoint == 'admin.prediction_detail') }}"><i class="bi bi-{{ icon }}"></i>{{ label }}</a>{% endfor %}
+    <div class="sidebar-divider"></div><a href="{{ url_for('main.home') }}"><i class="bi bi-house"></i>Home <i class="bi bi-arrow-up-right ms-auto"></i></a>
+  </nav>
+  <div class="sidebar-bottom"><div class="sidebar-note"><i class="bi bi-shield-check"></i><b>A learning workspace</b><p>Analytics reflect demo inputs and synthetic-data predictions.</p></div><div class="sidebar-user"><span class="avatar">{{ current_user.username[0]|upper }}</span><div><b>{{ current_user.username }}</b><small>Administrator</small></div><form method="post" action="{{ url_for('admin.logout') }}">{{ action_form.hidden_tag() }}<button type="submit" class="icon-button" aria-label="Logout" title="Logout"><i class="bi bi-box-arrow-right"></i></button></form></div></div>
+</aside>
+{% endblock %}
+{% block layout %}
+<div class="admin-layout"><header class="admin-topbar"><div class="d-flex align-items-center gap-3"><button type="button" class="icon-button sidebar-toggle" aria-controls="admin-sidebar" aria-expanded="false" aria-label="Toggle admin navigation"><i class="bi bi-list"></i></button><span class="breadcrumb-text">Workspace <i class="bi bi-chevron-right mx-2"></i><b>{% block breadcrumb %}Overview{% endblock %}</b></span></div><span class="pill neutral"><span class="status-dot"></span> Local demonstration</span></header><main id="main-content" class="admin-content"><div role="status">{% for category, message in get_flashed_messages(with_categories=true) %}<div class="alert alert-{{ category }}">{{ message }}</div>{% endfor %}</div>{% block admin_content %}{% endblock %}</main><footer class="admin-footer">{{ disclaimer }}<span>© 2026 AliAdilQ · All dashboard dates are UTC.</span></footer></div>
+{% endblock %}
+{% block footer %}{% endblock %}

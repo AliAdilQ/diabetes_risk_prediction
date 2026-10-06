@@ -1,0 +1,3 @@
+<div class="input-summary">
+{% for feature in features %}<div><span><i class="bi bi-{{ feature.icon }} me-2"></i>{{ feature.label }}</span><b>{{ '%g'|format(record[feature.key]) }} <small>{{ feature.unit }}</small></b></div>{% endfor %}
+</div>
